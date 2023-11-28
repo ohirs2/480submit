@@ -1,0 +1,73 @@
+CREATE TABLE Vaccine (
+    VaccineID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Company TEXT NOT NULL,
+    DosesRequired INTEGER NOT NULL,
+    Description TEXT
+);
+CREATE TABLE VaccineInventory (
+    VaccineInventoryID INTEGER PRIMARY KEY AUTOINCREMENT,
+    VaccineID INTEGER NOT NULL,
+    QuantityAvailable INTEGER NOT NULL,
+    QuantityOnHold INTEGER DEFAULT 0,
+    FOREIGN KEY (VaccineID) REFERENCES Vaccine(VaccineID)
+);
+CREATE TABLE Nurse (
+    NurseID INTEGER PRIMARY KEY AUTOINCREMENT,
+    FirstName TEXT NOT NULL,
+    MiddleInitial TEXT,
+    LastName TEXT NOT NULL,
+    EmployeeID TEXT NOT NULL UNIQUE,
+    Gender TEXT,
+    PhoneNumber TEXT,
+    Address TEXT
+);
+CREATE TABLE Patient (
+    PatientID INTEGER PRIMARY KEY AUTOINCREMENT,
+    FirstName TEXT NOT NULL,
+    LastName TEXT NOT NULL,
+    SSN TEXT NOT NULL UNIQUE,
+    Age INTEGER,
+    Gender TEXT,
+    Race TEXT,
+    OccupationClass TEXT,
+    PhoneNumber TEXT,
+    Address TEXT,
+    MedicalHistory TEXT
+);
+CREATE TABLE NurseScheduling (
+    NurseSchedulingID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NurseID INTEGER NOT NULL,
+    TimeSlot DATETIME NOT NULL,
+    FOREIGN KEY (NurseID) REFERENCES Nurse(NurseID)
+);
+CREATE TABLE VaccinationRecord (
+    VaccinationRecordID INTEGER PRIMARY KEY AUTOINCREMENT,
+    PatientID INTEGER NOT NULL,
+    VaccineID INTEGER NOT NULL,
+    DoseNumber INTEGER NOT NULL,
+    ScheduledTime DATETIME NOT NULL,
+    NurseID INTEGER,
+    Status TEXT,
+    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID),
+    FOREIGN KEY (VaccineID) REFERENCES Vaccine(VaccineID),
+    FOREIGN KEY (NurseID) REFERENCES Nurse(NurseID)
+);
+CREATE TABLE VaccinationScheduling (
+    VaccinationSchedulingID INTEGER PRIMARY KEY AUTOINCREMENT,
+    VaccinationRecordID INTEGER NOT NULL,
+    TimeSlot DATETIME NOT NULL,
+    FOREIGN KEY (VaccinationRecordID) REFERENCES VaccinationRecord(VaccinationRecordID)
+);
+CREATE TABLE NurseCredentials (
+  NurseID INTEGER PRIMARY KEY,
+  Username TEXT NOT NULL UNIQUE,
+  PasswordHash TEXT NOT NULL,
+  FOREIGN KEY (NurseID) REFERENCES Nurse(NurseID)
+);
+CREATE TABLE PatientCredentials (
+  PatientID INTEGER PRIMARY KEY,
+  Username TEXT NOT NULL UNIQUE,
+  PasswordHash TEXT NOT NULL,
+  FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)
+);
