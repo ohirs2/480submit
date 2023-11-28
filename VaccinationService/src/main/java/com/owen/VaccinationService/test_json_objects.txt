@@ -1,0 +1,65 @@
+vaccine:
+{
+  "name": "Pfizer-BioNTech",
+  "company": "Pfizer, Inc.",
+  "dosesRequired": 2,
+  "description": "mRNA-based COVID-19 vaccine"
+}
+
+
+VaccineInventory
+{
+  "vaccineId": 1,
+  "quantityAvailable": 1000,
+  "quantityOnHold": 100
+}
+
+Nurse:
+{
+  "firstName": "Jane",
+  "middleInitial": "A",
+  "lastName": "Doe",
+  "employeeID": "N12345",
+  "gender": "Female",
+  "phoneNumber": "555-1234",
+  "address": "123 Main St, Townsville"
+}
+
+Patient:
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "ssn": "123-45-6789",
+  "age": 45,
+  "gender": "Male",
+  "race": "Caucasian",
+  "occupationClass": "Engineer",
+  "phoneNumber": "555-6789",
+  "address": "456 Elm St, Citytown",
+  "medicalHistory": "No known allergies"
+}
+
+NurseScheduling:
+{
+  "nurseId": 1,
+  "timeSlot": "2023-11-23T10:00:00"
+}
+
+
+VaccinationRecord
+{
+  "patientId": 1,
+  "vaccineId": 1,
+  "doseNumber": 1,
+  "scheduledTime": "2023-11-23T10:15:00",
+  "nurseId": 1,
+  "status": "Scheduled"
+}
+
+VaccinationScheduling
+{
+  "vaccinationRecordId": 1,
+  "timeSlot": "2023-11-23T10:15:00"
+}
+
+

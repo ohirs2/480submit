@@ -1,0 +1,267 @@
+<div style="display: flex;">
+
+<div style="flex: 1; margin-right: 20px;">
+    <h2 class="text-center mt-20">Nurse Information</h2>
+<table>
+    <thead>
+      <tr>
+        <th>First</th>
+        <th>M.I.</th>
+        <th>Last</th>
+        <th>Employee ID</th>
+        <th>Gender</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Nurse ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let nurse of nurses; let i = index">
+        <td>
+          <span *ngIf="!nurse.isEditMode">{{ nurse.FirstName }}</span>
+          <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.FirstName">
+        </td>
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.MiddleInitial }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.MiddleInitial">
+        </td>
+        <td>
+          <span *ngIf="!nurse.isEditMode">{{ nurse.LastName }}</span>
+          <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.LastName">
+        </td>
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.EmployeeID }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.EmployeeID">
+        </td>
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.Gender }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.Gender">
+        </td>
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.PhoneNumber }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.PhoneNumber">
+        </td>
+        
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.Address }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.Address">
+        </td>
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.NurseID }}</span>
+        </td>
+
+        <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.username }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.username">
+          </td>
+          <td>
+            <span *ngIf="!nurse.isEditMode">{{ nurse.password }}</span>
+            <input *ngIf="nurse.isEditMode" type="text" [(ngModel)]="nurse.password">
+          </td>
+
+
+        <td>
+          <button (click)="toggleEditNurse(nurse)">{{ nurse.isEditMode ? 'Save' : 'Edit' }}</button>
+          <button (click)="deleteNurse(i)">Delete</button>
+        </td>
+      </tr>
+      
+    </tbody>
+    <tfoot>
+        <tr>
+          <td colspan="6"> 
+            <button (click)="addNurse()" class="add-vaccine-btn mb-20">Add Nurse</button>
+          </td>
+        </tr>
+      </tfoot>
+    
+  </table>
+  <h2 class="text-center mt-20">Patient Information</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>First</th>
+        <th>Last</th>
+        <th>SSN</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Race</th>
+        <th>Occupation</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Medical History</th>
+        <th>Patient ID</th>
+        <th>Username</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients; let i = index">
+        <td>
+          <span *ngIf="!patient.isEditMode">{{ patient.FirstName }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.LastName }}</span>
+        </td>
+        <td>
+          <span *ngIf="!patient.isEditMode">{{ patient.SSN }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.Age }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.Gender }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.Race }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.OccupationClass }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.PhoneNumber }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.Address }}</span>
+        </td>
+        <td>
+            <span *ngIf="!patient.isEditMode">{{ patient.MedicalHistory }}</span>
+        </td>
+        <td>
+            <span>{{patient.PatientID}}</span>
+        </td>
+        <td>
+          <span>{{patient.username}}</span>
+      </td>
+      <td>
+        <span>{{patient.password}}</span>
+    </td>
+  </table>
+
+
+  <h2 class="text-center mt-20">Available Times</h2>
+    
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Nurse ID</th>
+          <th>Timeslot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let time of availableTimes">
+          <td>{{time.NurseID}}</td>
+          <td>{{time.TimeSlot}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+  <h2 class="text-center mt-20">Vaccine Schedule</h2>
+    
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Vaccine Record ID</th>
+          <th>Patient ID</th>
+          <th>Vaccine ID</th>
+          <th>Dose Number</th>
+          <th>Scheduled Time</th>
+          <th>Nurse ID</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of vaccineRecordsf">
+          <td>{{ record.VaccinationRecordID }}</td>
+          <td>{{ record.PatientID }}</td>
+          <td>{{ record.VaccineID }}</td>
+          <td>{{ record.DoseNumber}}</td>
+          <td>{{ record.ScheduledTime }}</td>
+          <td>{{ record.NurseID }}</td>
+          <td>{{ record.Status}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 class="text-center mt-20">Vaccine History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Vaccine Record ID</th>
+          <th>Patient ID</th>
+          <th>Vaccine ID</th>
+          <th>Dose Number</th>
+          <th>Time</th>
+          <th>Nurse ID</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of vaccineRecordsp">
+          <td>{{ record.VaccinationRecordID }}</td>
+          <td>{{ record.PatientID }}</td>
+          <td>{{ record.VaccineID }}</td>
+          <td>{{ record.DoseNumber}}</td>
+          <td>{{ record.ScheduledTime }}</td>
+          <td>{{ record.NurseID }}</td>
+          <td>{{ record.Status}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<div style="flex: 1;">
+  <h2 class="text-center mt-20">Vaccine Data</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Doses</th>
+          <th>Description</th>
+          <th>Vaccine ID</th>
+          <th>Available Quantity</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vaccine of vaccines; let i = index">
+          <td *ngIf="!vaccine.isEditMode">{{ vaccine.Name }}</td>
+          <td *ngIf="vaccine.isEditMode"><input type="text" [(ngModel)]="vaccine.name"></td>
+          
+            <td *ngIf="!vaccine.isEditMode">{{ vaccine.Company }}</td>
+            <td *ngIf="vaccine.isEditMode"><input type="text" [(ngModel)]="vaccine.company"></td>
+          
+            <td *ngIf="!vaccine.isEditMode">{{ vaccine.DosesRequired }}</td>
+            <td *ngIf="vaccine.isEditMode"><input type="text" [(ngModel)]="vaccine.dosesRequired"></td>
+          
+            <td *ngIf="!vaccine.isEditMode">{{ vaccine.Description }}</td>
+            <td *ngIf="vaccine.isEditMode"><input type="text" [(ngModel)]="vaccine.description"></td>
+          
+            <td>{{ vaccine.VaccineID }}</td>
+          
+            <td *ngIf="!vaccine.isEditMode">{{ vaccine.QuantityAvailable }}</td>
+            <td *ngIf="vaccine.isEditMode"><input type="number" [(ngModel)]="vaccine.QuantityAvailable"></td>
+          
+            <td>
+                <button (click)="toggleEditVaccine(vaccine)">{{ vaccine.isEditMode ? 'Save' : 'Edit' }}</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="addVaccine()">Add Vaccine</button>
+  </div>
+
+  
+
+
+  
+
+
+</div>
+  

@@ -1,0 +1,23 @@
+<div class="login-container">
+    <h1>Login</h1>
+    
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" class="form-control" [(ngModel)]="username" placeholder="Enter your username">
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" class="form-control" [(ngModel)]="password" placeholder="Enter your password">
+    </div>
+    
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select id="role" class="form-control" [(ngModel)]="role">
+        <option value="nurse">Nurse</option>
+        <option value="patient">Patient</option>
+      </select>
+    </div>
+    
+    <button class="btn btn-primary" (click)="login()">Login</button>
+  </div>

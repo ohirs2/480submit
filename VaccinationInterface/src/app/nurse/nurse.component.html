@@ -1,0 +1,71 @@
+<div class="nurse-dashboard">
+    <h1>Hello, {{ nurse?.firstName + ' ' + nurse?.lastName}}</h1>
+    
+    <section class="update-info">
+      <h2>Update Information</h2>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" class="form-control" [(ngModel)]="nurse.address" name="address" placeholder="Enter new address">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" class="form-control" [(ngModel)]="nurse.phoneNumber" name="phoneNumber" placeholder="Enter new phone number">
+      </div>
+      <button class="btn btn-primary" (click)="updateNurseInfo()">Update Info</button>
+    </section>
+    
+    <section class="schedule-time">
+      <h2>Schedule Time</h2>
+      <input type="datetime-local" class="form-control" [(ngModel)]="newTimeSlot" name="newTimeSlot">
+      <button (click)="scheduleTime()" class="btn btn-success">Schedule</button>
+    </section>
+    
+    <section class="cancel-time">
+      <h2>Cancel Time</h2>
+      <select class="form-control" [(ngModel)]="selectedTimeSlot" name="selectedTimeSlot">
+        <option *ngFor="let time of scheduledTimes" [ngValue]="time">{{ time.timeSlot }}</option>
+      </select>
+      <button (click)="cancelTime()" class="btn btn-warning">Cancel</button>
+    </section>
+    
+    <section class="view-info">
+      <h2>View Information</h2>
+      <p><strong>Address:</strong> {{ nurse.address }}</p>
+      <p><strong>Phone Number:</strong> {{ nurse.phoneNumber }}</p>
+      <p><strong>Scheduled Times:</strong></p>
+      <ul>
+        <li *ngFor="let time of scheduledTimes">{{ time.timeSlot }}</li>
+      </ul>
+    </section>
+    
+    <section class="record-vaccination">
+      <h2>Record Vaccination</h2>
+
+      <div class="form-group">
+        <label for="patientid">PatientID:</label>
+        <input type="text" id="patientId" class="form-control" [(ngModel)]="patientId">
+      </div>
+      <div class="form-group">
+        <label for="vaccineid">VaccineID:</label>
+        <input type="tel" id="vaccineId" class="form-control" [(ngModel)]="vaccineId">
+      </div>
+      <div class="form-group">
+        <label for="dose">Dose #:</label>
+        <input type="text" id="address" class="form-control" [(ngModel)]="doseNumber" >
+      </div>
+      <div class="form-group">
+        <label for="time">Time:</label>
+        <select class="form-control" [(ngModel)]="inputTimeSlot" name="selectedTimeSlot">
+          <option *ngFor="let time of scheduledTimes" [ngValue]="time">{{ time.timeSlot }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input type="tel" id="phoneNumber" class="form-control" [(ngModel)]="status" >
+      </div>
+
+
+      <button (click)="recordVaccination()" class="btn btn-info">Record Vaccination</button>
+    </section>
+  </div>
+  
